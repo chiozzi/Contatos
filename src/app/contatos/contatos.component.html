@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8 m-auto">
+            <h1 class="text-center">Cadastro de Contatos</h1>
+            <form [formGroup]="formGroupContatos">
+
+                <div class="mb-3">
+                  <label for="inputName" class="form-label">Nome: </label>
+                  <input formControlName="name"  type="text" class="form-control" id="inputName" placeholder="Digite o seu nome">
+                </div>
+                
+
+                <div class="mb-3">
+                    <label for="inputContato" class="form-label">Telefone:</label>
+                    <input formControlName="phone"  type="text" class="form-control" id="inputContato" placeholder="Digite seu telefone">
+                </div>
+      
+              
+              <div class="btn-container">
+                <button *ngIf="!isEditing" class="btn btn-primary" (click)="onClickSave()"  >Salvar</button>
+                <button *ngIf="isEditing"  class="btn btn-primary" (click)="onClickConfirmUpdate()" >Alterar</button>
+                <button class="btn btn-primary ms-2" (click)="onClickClear()">Limpar</button>
+              </div>
+              
+            </form>
+
+              <h1 class="text-center">Telefones Cadastrados</h1>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">Remover</th>
+                    <th scope="col">Editar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let c of contatos">
+                    <th scope="row">{{c.id}}</th>
+                    <td>{{c.name}}</td>
+                     <td>{{ c.phone }}</td>
+                    <td><button class="btn btn-danger" (click)="onClickDelete(c)"  >Remover</button>   </td>
+                    <td><button class="btn btn-primary" (click)="onClickUpdate(c)"  >Editar</button>   </td>
+
+                  </tr>
+                </tbody>
+              </table>
+
+
+        </div>
+    </div>    
+</div>
+
